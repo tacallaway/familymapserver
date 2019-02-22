@@ -8,13 +8,14 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DbConnection {
-    private static Connection connection;
+    private static Connection conn;
+    private static boolean testMode = false;
 
     private static Connection createConnection() {
-        Connection conn = null;
+        java.sql.Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:data/data.db";
+            String url = "jdbc:sqlite:data/" + (testMode ? "test.db" : "data.db");
 
             SQLiteConfig config = new SQLiteConfig();
             config.enforceForeignKeys(true);
@@ -32,10 +33,18 @@ public class DbConnection {
     }
 
     public static synchronized Connection getConnection() {
-        if (connection == null) {
-            connection = createConnection();
+        if (conn == null) {
+            conn = createConnection();
         }
 
-        return connection;
+        return conn;
+    }
+
+    public static boolean isTestMode() {
+        return testMode;
+    }
+
+    public static void setTestMode(boolean testMode) {
+        DbConnection.testMode = testMode;
     }
 }

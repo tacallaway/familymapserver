@@ -19,13 +19,13 @@ public class User {
     /** Link to person */
     private Person person;
 
-    public User(String userName, String password, String email, String firstName, String lastName, String gender, Person person) {
+    public User(String userName, String password, String email, Person person) {
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
+        this.firstName = person.getFirstName();
+        this.lastName = person.getLastName();
+        this.gender = person.getGender();
         this.person = person;
     }
 

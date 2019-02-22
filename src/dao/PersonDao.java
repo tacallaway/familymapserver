@@ -50,7 +50,7 @@ public class PersonDao {
 
         if (rs.next()) {
             person = new Person(rs.getString("PersonID"), rs.getString("FirstName"), rs.getString("LastName"), rs.getString("Gender"));
-            // person.setDescendant(); // Enable when get user functionality is working
+            person.setDescendant(UserDao.getUser(rs.getString("Descendant")));
             person.setFather(rs.getString("Father"));
             person.setMother(rs.getString("Mother"));
             person.setSpouse(rs.getString("Spouse"));
