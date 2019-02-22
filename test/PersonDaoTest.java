@@ -87,7 +87,7 @@ public class PersonDaoTest {
     }
 
     private Person createTestUser(String firstName, String lastName, String gender) throws SQLException {
-        Person person = new Person("Tyler", "Callaway", "m");
+        Person person = new Person(firstName, lastName, gender);
         PersonDao.insertPerson(person);
 
         return person;
