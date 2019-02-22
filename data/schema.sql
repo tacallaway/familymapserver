@@ -2,14 +2,11 @@ CREATE TABLE `User` (
 	`UserName`	TEXT NOT NULL UNIQUE,
 	`Password`	TEXT NOT NULL,
 	`Email`	TEXT NOT NULL,
-	`FirstName`	TEXT NOT NULL,
-	`LastName`	TEXT NOT NULL,
-	`Gender`	TEXT CHECK(Gender IN ( "f" , "m" )),
 	`PersonID`	TEXT NOT NULL UNIQUE,
-	PRIMARY KEY(`UserName`),
-	FOREIGN KEY(`PersonID`) REFERENCES `Person`(`PersonID`)
+	FOREIGN KEY(`PersonID`) REFERENCES `Person`(`PersonID`),
+	PRIMARY KEY(`UserName`)
 );
-                           
+
 CREATE TABLE `Person` (
 	`PersonID`	TEXT NOT NULL UNIQUE,
 	`Descendant`	TEXT,
@@ -22,7 +19,7 @@ CREATE TABLE `Person` (
 	FOREIGN KEY(`Descendant`) REFERENCES `User`(`UserName`),
 	PRIMARY KEY(`PersonID`)
 );
-                                    
+
 CREATE TABLE `Event` (
 	`EventID`	TEXT NOT NULL UNIQUE,
 	`Descendant`	TEXT NOT NULL,
@@ -37,7 +34,7 @@ CREATE TABLE `Event` (
 	FOREIGN KEY(`Descendant`) REFERENCES `User`(`UserName`),
 	FOREIGN KEY(`PersonID`) REFERENCES `Person`(`PersonID`)
 );
-                                    
+
 CREATE TABLE `AuthToken` (
 	`Token`	TEXT NOT NULL UNIQUE,
 	`Username`	TEXT NOT NULL,
