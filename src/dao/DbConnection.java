@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DbConnection {
-    private static Connection conn;
+    private static Connection connection;
 
     private static Connection createConnection() {
         java.sql.Connection conn = null;
@@ -32,10 +32,10 @@ public class DbConnection {
     }
 
     public static synchronized Connection getConnection() {
-        if (conn == null) {
-            conn = createConnection();
+        if (connection == null) {
+            connection = createConnection();
         }
 
-        return conn;
+        return connection;
     }
 }
