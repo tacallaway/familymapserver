@@ -10,12 +10,6 @@ public class User {
     private String password;
     /** User email */
     private String email;
-    /** User first name */
-    private String firstName;
-    /** User last name */
-    private String lastName;
-    /** User gender */
-    private String gender;
     /** Link to person */
     private Person person;
 
@@ -23,9 +17,6 @@ public class User {
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.firstName = person.getFirstName();
-        this.lastName = person.getLastName();
-        this.gender = person.getGender();
         this.person = person;
     }
 
@@ -42,19 +33,15 @@ public class User {
     }
 
     public String getFirstName() {
-        return firstName;
+        return person.getFirstName();
     }
 
     public String getLastName() {
-        return lastName;
+        return person.getLastName();
     }
 
     public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
+        return person.getGender();
     }
 
     public Person getPerson() {
