@@ -88,6 +88,7 @@ public class PersonDaoTest {
         PersonDao.deletePerson("12345");
 
         Assert.assertNotNull(PersonDao.getPerson(person.getPersonID()));
+        Assert.assertNull(PersonDao.getPerson("12345"));
     }
 
     private Person createTestPerson(String firstName, String lastName, String gender) throws SQLException {

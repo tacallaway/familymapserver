@@ -32,66 +32,69 @@ public class UserDaoTest {
         Assert.assertEquals("m", userFromDatabase.getGender());
     }
 
-//    @Test(expected = SQLException.class)
-//    public void insertNullName() throws SQLException {
-//        Person person = createTestUser(null, null, "m");
-//
-//        PersonDao.insertPerson(person);
-//    }
-//
-//    @Test(expected = SQLException.class)
-//    public void insertNullGender() throws SQLException {
-//        Person person = createTestUser("Tyler", "Callaway", null);
-//
-//        PersonDao.insertPerson(person);
-//    }
-//
-//    @Test
-//    public void getSuccess() throws SQLException {
-//        Person person = createTestUser("Tyler", "Callaway", "m");
-//
-//        Person personFromDatabase = PersonDao.getPerson(person.getPersonID());
-//
-//        Assert.assertNotNull(personFromDatabase);
-//        Assert.assertEquals(person.getPersonID(), personFromDatabase.getPersonID());
-//        Assert.assertEquals(person.getFirstName(), personFromDatabase.getFirstName());
-//        Assert.assertEquals(person.getLastName(), personFromDatabase.getLastName());
-//        Assert.assertEquals(person.getGender(), personFromDatabase.getGender());
-//    }
-//
-//    @Test
-//    public void getInvalidID() throws SQLException {
-//        createTestUser("Tyler", "Callaway", "m");
-//
-//        Person personFromDatabase = PersonDao.getPerson("12345");
-//
-//        Assert.assertNull(personFromDatabase);
-//    }
-//
-//    @Test
-//    public void deleteSuccess() throws SQLException {
-//        Person person = createTestUser("Tyler", "Callaway", "m");
-//
-//        Person personFromDatabase = PersonDao.getPerson(person.getPersonID());
-//
-//        Assert.assertNotNull(personFromDatabase);
-//        Assert.assertEquals(person.getPersonID(), personFromDatabase.getPersonID());
-//
-//        PersonDao.deletePerson(person.getPersonID());
-//
-//        personFromDatabase = PersonDao.getPerson(person.getPersonID());
-//
-//        Assert.assertNull(personFromDatabase);
-//    }
-//
-//    @Test
-//    public void deleteInvalidID() throws SQLException {
-//        Person person = createTestUser("Tyler", "Callaway", "m");
-//
-//        PersonDao.deletePerson("12345");
-//
-//        Assert.assertNotNull(PersonDao.getPerson(person.getPersonID()));
-//    }
+    @Test(expected = SQLException.class)
+    public void insertNullUserName() throws SQLException {
+        User user = createTestUser(null, "secret", "tacallaway@gmail.com", "Tyler", "Callaway", "m");
+
+        UserDao.insertUser(user);
+    }
+
+    @Test(expected = SQLException.class)
+    public void insertNullPasswordAndEmail() throws SQLException {
+        User user = createTestUser("tyler123", null, null, "Tyler", "Callaway", "m");
+
+        UserDao.insertUser(user);
+    }
+
+    @Test
+    public void getSuccess() throws SQLException {
+        User user = createTestUser("tyler123", "secret", "tacallaway@gmail.com", "Tyler", "Callaway", "m");
+
+        User userFromDatabase = UserDao.getUser(user.getUserName());
+
+        Assert.assertNotNull(userFromDatabase);
+        Assert.assertEquals(user.getUserName(), userFromDatabase.getUserName());
+        Assert.assertEquals(user.getPassword(), userFromDatabase.getPassword());
+        Assert.assertEquals(user.getEmail(), userFromDatabase.getEmail());
+        Assert.assertEquals("Tyler", userFromDatabase.getFirstName());
+        Assert.assertEquals("Callaway", userFromDatabase.getLastName());
+        Assert.assertEquals("m", userFromDatabase.getGender());
+    }
+
+    @Test
+    public void getInvalidID() throws SQLException {
+        User user = createTestUser("tyler123", "secret", "tacallaway@gmail.com", "Tyler", "Callaway", "m");
+
+        User userFromDatabase = UserDao.getUser("12345");
+
+        Assert.assertNull(userFromDatabase);
+    }
+
+    @Test
+    public void deleteSuccess() throws SQLException {
+        User user = createTestUser("tyler123", "secret", "tacallaway@gmail.com", "Tyler", "Callaway", "m");
+
+        User userFromDatabase = UserDao.getUser(user.getUserName());
+
+        Assert.assertNotNull(userFromDatabase);
+        Assert.assertEquals(user.getUserName(), userFromDatabase.getUserName());
+
+        UserDao.deleteUser(user.getUserName());
+
+        userFromDatabase = UserDao.getUser(user.getUserName());
+
+        Assert.assertNull(userFromDatabase);
+    }
+
+    @Test
+    public void deleteInvalidID() throws SQLException {
+        User user = createTestUser("tyler123", "secret", "tacallaway@gmail.com", "Tyler", "Callaway", "m");
+
+        UserDao.deleteUser("12345");
+
+        Assert.assertNotNull(UserDao.getUser(user.getUserName()));
+        Assert.assertNull(UserDao.getUser("12345"));
+    }
 
     private User createTestUser(String userName, String password, String email, String firstName, String lastName, String gender) throws SQLException {
         Person person = new Person(firstName, lastName, gender);
