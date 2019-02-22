@@ -1,6 +1,7 @@
 package dao;
 
 import model.Person;
+import model.User;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -89,6 +90,15 @@ public class PersonDaoTest {
 
         Assert.assertNotNull(PersonDao.getPerson(person.getPersonID()));
         Assert.assertNull(PersonDao.getPerson("12345"));
+    }
+
+    @Test(expected = SQLException.class)
+    public void deletePersonForeignKeyViolation() throws SQLException {
+        // creating new user creates a new person
+        User user = UserDaoTest.createTestUser("tyler123", "secret", "tacallaway@gmail.com", "Tyler", "Callaway", "m");
+
+        // try to delete the person record while user record references it
+        PersonDao.deletePerson(user.getPerson().getPersonID());
     }
 
     private Person createTestPerson(String firstName, String lastName, String gender) throws SQLException {

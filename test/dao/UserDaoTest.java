@@ -96,7 +96,7 @@ public class UserDaoTest {
         Assert.assertNull(UserDao.getUser("12345"));
     }
 
-    private User createTestUser(String userName, String password, String email, String firstName, String lastName, String gender) throws SQLException {
+    public static User createTestUser(String userName, String password, String email, String firstName, String lastName, String gender) throws SQLException {
         Person person = new Person(firstName, lastName, gender);
         PersonDao.insertPerson(person);
 
@@ -105,5 +105,4 @@ public class UserDaoTest {
 
         return user;
     }
-
 }
