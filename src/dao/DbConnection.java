@@ -11,7 +11,7 @@ public class DbConnection {
     private static Connection connection;
 
     private static Connection createConnection() {
-        java.sql.Connection conn = null;
+        Connection conn = null;
         try {
             // db parameters
             String url = "jdbc:sqlite:data/data.db";
