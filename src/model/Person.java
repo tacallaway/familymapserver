@@ -1,5 +1,7 @@
 package model;
 
+import java.util.UUID;
+
 /**
  * Represents a person.
  */
@@ -21,20 +23,19 @@ public class Person {
     /** Spouse name */
     private String spouse;
 
-    public Person(String personID, User descendant, String firstName, String lastName, String gender) {
+    public Person(String personID, String firstName, String lastName, String gender) {
         this.personID = personID;
-        this.descendant = descendant;
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
     }
 
-    public String getPersonID() {
-        return personID;
+    public Person(String firstName, String lastName, String gender) {
+        this(UUID.randomUUID().toString(), firstName, lastName, gender);
     }
 
-    public User getDescendant() {
-        return descendant;
+    public String getPersonID() {
+        return personID;
     }
 
     public String getFirstName() {
@@ -47,6 +48,14 @@ public class Person {
 
     public String getGender() {
         return gender;
+    }
+
+    public User getDescendant() {
+        return descendant;
+    }
+
+    public void setDescendant(User descendant) {
+        this.descendant = descendant;
     }
 
     public String getFather() {
