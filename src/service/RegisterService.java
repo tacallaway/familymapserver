@@ -15,6 +15,6 @@ public class RegisterService {
      * @return Register result
      */
     public static RegisterResult register(RegisterRequest req) {
-        return null;
+        return new RegisterResult("12345", "bob", "secret");
     }
 }
