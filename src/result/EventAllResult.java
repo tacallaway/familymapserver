@@ -1,15 +1,19 @@
 package result;
 
+import model.Event;
+
+import java.util.List;
+
 /**
  * Result for the "all events" operation.
  */
 public class EventAllResult {
     /** List of results */
-    private EventResult[] data;
+    private List<Event> data;
     /** Error message */
     private String message;
 
-    public EventAllResult(EventResult[] data) {
+    public EventAllResult(List<Event> data) {
         this.data = data;
     }
 
@@ -17,7 +21,7 @@ public class EventAllResult {
         this.message = message;
     }
 
-    public EventResult[] getData() {
+    public List<Event> getData() {
         return data;
     }
 

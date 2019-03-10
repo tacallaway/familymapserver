@@ -9,7 +9,7 @@ public class Person {
     /** Person primary key */
     private String personID;
     /** Descendant */
-    private User descendant;
+    private String descendant;
     /** First name */
     private String firstName;
     /** Last name */
@@ -50,11 +50,11 @@ public class Person {
         return gender;
     }
 
-    public User getDescendant() {
+    public String getDescendant() {
         return descendant;
     }
 
-    public void setDescendant(User descendant) {
+    public void setDescendant(String descendant) {
         this.descendant = descendant;
     }
 

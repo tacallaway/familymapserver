@@ -16,7 +16,6 @@ CREATE TABLE `Person` (
 	`Father`	TEXT,
 	`Mother`	TEXT,
 	`Spouse`	TEXT,
-	FOREIGN KEY(`Descendant`) REFERENCES `User`(`UserName`),
 	PRIMARY KEY(`PersonID`)
 );
 

@@ -3,6 +3,8 @@ package dao;
 import model.Person;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Person data access object for creating, getting, and deleting persons from the database.
@@ -21,13 +23,31 @@ public class PersonDao {
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, person.getPersonID());
-        pstmt.setString(2, person.getDescendant() != null ? person.getDescendant().getUserName() : null);
+        pstmt.setString(2, person.getDescendant());
         pstmt.setString(3, person.getFirstName());
         pstmt.setString(4, person.getLastName());
         pstmt.setString(5, person.getGender());
         pstmt.setString(6, person.getFather());
         pstmt.setString(7, person.getMother());
         pstmt.setString(8, person.getSpouse());
+
+        pstmt.executeUpdate();
+    }
+
+    public static void updatePerson(Person person) throws SQLException {
+        Connection conn = DbConnection.getConnection();
+
+        String sql = "UPDATE Person SET Descendant=?, FirstName=?, LastName=?, Gender=?, Father=?, Mother=?, Spouse=? where PersonID=?";
+
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, person.getDescendant());
+        pstmt.setString(2, person.getFirstName());
+        pstmt.setString(3, person.getLastName());
+        pstmt.setString(4, person.getGender());
+        pstmt.setString(5, person.getFather());
+        pstmt.setString(6, person.getMother());
+        pstmt.setString(7, person.getSpouse());
+        pstmt.setString(8, person.getPersonID());
 
         pstmt.executeUpdate();
     }
@@ -50,13 +70,37 @@ public class PersonDao {
 
         if (rs.next()) {
             person = new Person(rs.getString("PersonID"), rs.getString("FirstName"), rs.getString("LastName"), rs.getString("Gender"));
-            person.setDescendant(UserDao.getUser(rs.getString("Descendant")));
+            person.setDescendant(rs.getString("Descendant"));
             person.setFather(rs.getString("Father"));
             person.setMother(rs.getString("Mother"));
             person.setSpouse(rs.getString("Spouse"));
         }
 
         return person;
+    }
+
+    public static List<Person> getPersons(String username) throws SQLException {
+        List<Person> persons = new ArrayList<Person>();
+
+        Connection conn = DbConnection.getConnection();
+
+        String sql = "SELECT * FROM Person WHERE Descendant = ?";
+
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, username);
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            Person person = new Person(rs.getString("PersonID"), rs.getString("FirstName"), rs.getString("LastName"), rs.getString("Gender"));
+            person.setDescendant(rs.getString("Descendant"));
+            person.setFather(rs.getString("Father"));
+            person.setMother(rs.getString("Mother"));
+            person.setSpouse(rs.getString("Spouse"));
+
+            persons.add(person);
+        }
+
+        return persons;
     }
 
     /**
@@ -71,6 +115,17 @@ public class PersonDao {
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, personID);
+
+        pstmt.executeUpdate();
+    }
+
+    public static void deletePersons(String username) throws SQLException {
+        Connection conn = DbConnection.getConnection();
+
+        String sql = "DELETE FROM Person WHERE Descendant = ?";
+
+        PreparedStatement pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, username);
 
         pstmt.executeUpdate();
     }

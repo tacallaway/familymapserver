@@ -1,5 +1,7 @@
 package model;
 
+import java.util.UUID;
+
 /**
  * Associates an auth token to a user.
  */
@@ -12,6 +14,10 @@ public class AuthToken {
     public AuthToken(String token, User user) {
         this.token = token;
         this.user = user;
+    }
+
+    public AuthToken(User user) {
+        this(UUID.randomUUID().toString(), user);
     }
 
     public String getToken() {

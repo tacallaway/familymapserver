@@ -1,8 +1,15 @@
 package service;
 
+import dao.EventDao;
+import dao.UserDao;
+import model.Event;
+import model.Person;
 import request.EventRequest;
 import result.EventAllResult;
 import result.EventResult;
+
+import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Performs event operations.
@@ -16,7 +23,16 @@ public class EventService {
      * @return Event
      */
     public static EventResult getEvent(EventRequest req) {
-        return null;
+        EventResult result;
+
+        try {
+            Event event = EventDao.getEvent(req.getEventID());
+            result = new EventResult(event);
+        } catch (SQLException e) {
+            result = new EventResult(e.getMessage());
+        }
+
+        return result;
     }
 
     /**
@@ -24,7 +40,31 @@ public class EventService {
      *
      * @return All events
      */
-    public static EventAllResult getEvents() {
-        return null;
+    public static EventAllResult getEvents(String username) {
+
+        EventAllResult result;
+
+        try {
+            List<Event> events = EventDao.getEvents(username);
+            result = new EventAllResult(events);
+        } catch (SQLException e) {
+            result = new EventAllResult(e.getMessage());
+        }
+
+        return result;
+    }
+
+    public static Event addEvent(Person person, double latitude, double longitude, String country, String city, String eventType, int year) {
+        Event event = null;
+
+        try {
+            event = new Event(person.getDescendant(), person.getPersonID(), latitude, longitude, country, city, eventType, year);
+
+            EventDao.insertEvent(event);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return event;
     }
 }

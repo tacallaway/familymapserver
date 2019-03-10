@@ -1,5 +1,7 @@
 package model;
 
+import java.util.UUID;
+
 /**
  * Represents a life event like birth, baptism, marriage, death, etc.
  */
@@ -7,13 +9,13 @@ public class Event {
     /** Event ID */
     private String eventID;
     /** Desendant */
-    private User descendant;
+    private String descendant;
     /** Person object */
-    private Person person;
+    private String personID;
     /** Location latitude */
-    private float latitude;
+    private double latitude;
     /** Location longitude */
-    private float longitude;
+    private double longitude;
     /** Location country */
     private String country;
     /** Location city */
@@ -23,17 +25,22 @@ public class Event {
     /** Event year */
     private int year;
 
-    public Event(String eventID, User descendant, Person person, float latitude, float longitude,
+    public Event(String eventID, String descendant, String personID, double latitude, double longitude,
                  String country, String city, String eventType, int year) {
         this.eventID = eventID;
         this.descendant = descendant;
-        this.person = person;
+        this.personID = personID;
         this.latitude = latitude;
         this.longitude = longitude;
         this.country = country;
         this.city = city;
         this.eventType = eventType;
         this.year = year;
+    }
+
+    public Event(String descendant, String personID, double latitude, double longitude,
+                 String country, String city, String eventType, int year) {
+        this(UUID.randomUUID().toString(), descendant, personID, latitude, longitude, country, city, eventType, year);
     }
 
     public String getEventID() {
@@ -44,23 +51,23 @@ public class Event {
         this.eventID = eventID;
     }
 
-    public User getDescendant() {
+    public String getDescendant() {
         return descendant;
     }
 
-    public void setDescendant(User descendant) {
+    public void setDescendant(String descendant) {
         this.descendant = descendant;
     }
 
-    public Person getPerson() {
-        return person;
+    public String getPersonID() {
+        return personID;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setPersonID(Person person) {
+        this.personID = personID;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
@@ -68,7 +75,7 @@ public class Event {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 

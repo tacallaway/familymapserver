@@ -4,32 +4,35 @@ import model.Event;
 import model.Person;
 import model.User;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Request for the load operation.
  */
 public class LoadRequest {
     /** Users */
-    private User[] users;
+    private List<Map<String, String>> users;
     /** Persons */
-    private Person[] persons;
+    private List<Map<String, String>> persons;
     /** Events */
-    private Event[] events;
+    private List<Map<String, String>> events;
 
-    public LoadRequest(User[] users, Person[] persons, Event[] events) {
+    public LoadRequest(List<Map<String, String>> users, List<Map<String, String>> persons, List<Map<String, String>> events) {
         this.users = users;
         this.persons = persons;
         this.events = events;
     }
 
-    public User[] getUsers() {
+    public List<Map<String, String>> getUsers() {
         return users;
     }
 
-    public Person[] getPersons() {
+    public List<Map<String, String>> getPersons() {
         return persons;
     }
 
-    public Event[] getEvents() {
+    public List<Map<String, String>> getEvents() {
         return events;
     }
 }

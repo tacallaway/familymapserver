@@ -1,14 +1,22 @@
 import com.sun.net.httpserver.HttpServer;
-import handler.RegisterHandler;
+import handler.*;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 
 public class Server {
     public static void main(String[] args) {
         try {
             HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+
             server.createContext("/user/register", new RegisterHandler());
+            server.createContext("/login", new LoginHandler());
+            server.createContext("/clear", new ClearHandler());
+            server.createContext("/fill/", new FillHandler());
+            server.createContext("/person", new PersonHandler());
+            server.createContext("/event", new EventHandler());
+            server.createContext("/load", new LoadHandler());
+
             server.setExecutor(null); // creates a default executor
             server.start();
 
