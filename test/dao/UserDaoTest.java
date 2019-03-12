@@ -13,6 +13,8 @@ public class UserDaoTest {
     @Before
     public void initialize() throws SQLException {
         DbConnection.setTestMode(true);
+        AuthTokenDao.deleteAll();
+        EventDao.deleteAll();
         UserDao.deleteAll();
         PersonDao.deleteAll();
     }
