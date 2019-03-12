@@ -1,9 +1,7 @@
 package service;
 
 import dao.PersonDao;
-import dao.UserDao;
 import model.Person;
-import model.User;
 import request.PersonRequest;
 import result.PersonAllResult;
 import result.PersonResult;
@@ -27,7 +25,12 @@ public class PersonService {
 
         try {
             Person person = PersonDao.getPerson(req.getPersonID());
-            result = new PersonResult(person);
+
+            if (person == null) {
+                result = new PersonResult("Request property missing or has invalid value");
+            } else {
+                result = new PersonResult(person);
+            }
         } catch (SQLException e) {
             result = new PersonResult(e.getMessage());
         }

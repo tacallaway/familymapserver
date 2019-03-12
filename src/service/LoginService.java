@@ -7,8 +7,6 @@ import model.User;
 import request.LoginRequest;
 import result.LoginResult;
 
-import java.sql.SQLException;
-
 /**
  * Performs login operations.
  */

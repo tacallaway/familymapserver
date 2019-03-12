@@ -24,9 +24,13 @@ public class FillService {
 
     private static Random rand = new Random();
     private static List<String> firstNames;
-    private static List<String> middleNames;
     private static List<String> lastNames;
     private static List<Map<String, String>> locations;
+
+    private static class ObjectCount {
+        public int personCount;
+        public int eventCount;
+    };
 
     static {
         ObjectMapper mapper = new ObjectMapper();
@@ -35,10 +39,6 @@ public class FillService {
             byte[] encoded = Files.readAllBytes(Paths.get("json/fnames.json"));
             Map<String, List<String>> json = mapper.readValue(new String(encoded, "utf-8"), Map.class);
             firstNames = json.get("data");
-
-            encoded = Files.readAllBytes(Paths.get("json/mnames.json"));
-            json = mapper.readValue(new String(encoded, "utf-8"), Map.class);
-            middleNames = json.get("data");
 
             encoded = Files.readAllBytes(Paths.get("json/snames.json"));
             json = mapper.readValue(new String(encoded, "utf-8"), Map.class);
@@ -151,9 +151,4 @@ public class FillService {
 
         return person;
     }
-}
-
-class ObjectCount {
-    public int personCount;
-    public int eventCount;
 }

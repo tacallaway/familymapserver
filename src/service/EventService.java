@@ -1,7 +1,6 @@
 package service;
 
 import dao.EventDao;
-import dao.UserDao;
 import model.Event;
 import model.Person;
 import request.EventRequest;
@@ -55,14 +54,14 @@ public class EventService {
     }
 
     public static Event addEvent(Person person, double latitude, double longitude, String country, String city, String eventType, int year) {
-        Event event = null;
+        Event event;
 
         try {
             event = new Event(person.getDescendant(), person.getPersonID(), latitude, longitude, country, city, eventType, year);
 
             EventDao.insertEvent(event);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            event = null;
         }
 
         return event;

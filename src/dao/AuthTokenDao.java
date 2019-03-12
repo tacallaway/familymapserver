@@ -51,61 +51,62 @@ public class AuthTokenDao {
         return authToken;
     }
 
-    /**
-     * Gets an auth token from the database.
-     *
-     * @param username Token of auth token to get
-     * @return Auth token from database
-     */
-    public static AuthToken getAuthTokenByUser(String username) throws SQLException {
-        Connection conn = DbConnection.getConnection();
-        AuthToken authToken = null;
-
-        String sql = "SELECT * FROM AuthToken WHERE Username = ?";
-
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, username);
-        ResultSet rs = pstmt.executeQuery();
-
-        if (rs.next()) {
-            User user = UserDao.getUser(username);
-            authToken = new AuthToken(rs.getString("Token"), user.getUserName());
-        }
-
-        return authToken;
-    }
-
-    /**
-     * Deletes an auth token from the database.
-     *
-     * @param token Token of auth token to delete
-     */
-    public static void deleteAuthToken(String token) throws SQLException {
-        Connection conn = DbConnection.getConnection();
-
-        String sql = "DELETE FROM AuthToken WHERE Token = ?";
-
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, token);
-
-        pstmt.executeUpdate();
-    }
-
-    /**
-     * Deletes an auth token from the database.
-     *
-     * @param username Name of user
-     */
-    public static void deleteAuthTokenByUser(String username) throws SQLException {
-        Connection conn = DbConnection.getConnection();
-
-        String sql = "DELETE FROM AuthToken WHERE Username = ?";
-
-        PreparedStatement pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, username);
-
-        pstmt.executeUpdate();
-    }
+// METHODS COMMENTED BELOW ARE UNUSED
+//    /**
+//     * Gets an auth token from the database.
+//     *
+//     * @param username Token of auth token to get
+//     * @return Auth token from database
+//     */
+//    public static AuthToken getAuthTokenByUser(String username) throws SQLException {
+//        Connection conn = DbConnection.getConnection();
+//        AuthToken authToken = null;
+//
+//        String sql = "SELECT * FROM AuthToken WHERE Username = ?";
+//
+//        PreparedStatement pstmt = conn.prepareStatement(sql);
+//        pstmt.setString(1, username);
+//        ResultSet rs = pstmt.executeQuery();
+//
+//        if (rs.next()) {
+//            User user = UserDao.getUser(username);
+//            authToken = new AuthToken(rs.getString("Token"), user.getUserName());
+//        }
+//
+//        return authToken;
+//    }
+//
+//    /**
+//     * Deletes an auth token from the database.
+//     *
+//     * @param token Token of auth token to delete
+//     */
+//    public static void deleteAuthToken(String token) throws SQLException {
+//        Connection conn = DbConnection.getConnection();
+//
+//        String sql = "DELETE FROM AuthToken WHERE Token = ?";
+//
+//        PreparedStatement pstmt = conn.prepareStatement(sql);
+//        pstmt.setString(1, token);
+//
+//        pstmt.executeUpdate();
+//    }
+//
+//    /**
+//     * Deletes an auth token from the database.
+//     *
+//     * @param username Name of user
+//     */
+//    public static void deleteAuthTokenByUser(String username) throws SQLException {
+//        Connection conn = DbConnection.getConnection();
+//
+//        String sql = "DELETE FROM AuthToken WHERE Username = ?";
+//
+//        PreparedStatement pstmt = conn.prepareStatement(sql);
+//        pstmt.setString(1, username);
+//
+//        pstmt.executeUpdate();
+//    }
 
     /**
      * Deletes an auth token from the database.

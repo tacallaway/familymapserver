@@ -11,6 +11,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FillHandler implements HttpHandler {
+    /**
+     *  PLEASE NOTE THAT SINCE JAVA'S BASIC HttpService DOESN'T HAVE BUILT IN FILE SERVING, THE FOLLOWING METHOD WAS
+     *  BORROWED FROM AN ONLINE TUTORIAL.
+     */
     @Override
     public void handle(HttpExchange he) {
         Map<String, String> responseMap = new HashMap<>();
