@@ -10,6 +10,10 @@ import java.io.OutputStream;
 import java.net.URI;
 
 public class FileHandler implements HttpHandler {
+    /**
+     * NOTE THAT SINCE THE BASIC JAVA HttpServer DOESN'T INCLUDE FILE SERVING FUNCTIONALITY, THE FOLLOWING METHOD WAS
+     * BORROWED FROM AN ONLINE TUTORIAL.
+     */
     public void handle(HttpExchange t) throws IOException {
         String root = "web";
         File rootDir = new File(root);
