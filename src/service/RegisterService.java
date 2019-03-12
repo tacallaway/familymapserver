@@ -31,6 +31,7 @@ public class RegisterService {
             }
 
             Person person = new Person(req.getFirstName(), req.getLastName(), req.getGender());
+            person.setDescendant(req.getUserName());
             PersonDao.insertPerson(person);
 
             User user = new User(req.getUserName(), req.getPassword(), req.getEmail(), person);
