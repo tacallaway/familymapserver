@@ -62,13 +62,18 @@ public class FillService {
         MessageResult result;
 
         String username = req.getUserName();
-        int numGenerations = req.getNumGenerations();
 
         try {
+            int numGenerations = req.getNumGenerations();
+
+            if (numGenerations < 0 || numGenerations > 20) {
+                throw new FamilyMapException("Invalid username or generations parameter");
+            }
+
             User user = UserDao.getUser(username);
 
             if (user == null) {
-                result = new MessageResult("User not found");
+                result = new MessageResult("Invalid username or generations parameter");
             } else {
                 Person person = user.getPerson();
 
@@ -78,8 +83,12 @@ public class FillService {
 
                 result = new MessageResult("Successfully added " + objectCount.personCount + " persons and " + objectCount.eventCount + " events to the database.");
             }
-        } catch (SQLException e) {
-            result = new MessageResult(e.getMessage());
+        } catch (FamilyMapException fme) {
+            result = new MessageResult(fme.getMessage());
+        } catch (NumberFormatException nfe) {
+            result = new MessageResult("Invalid username or generations parameter");
+        } catch (Exception e) {
+            result = new MessageResult("Internal server error");
         }
 
         return result;

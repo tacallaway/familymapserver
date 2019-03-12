@@ -16,6 +16,7 @@ public class Server {
             server.createContext("/person", new PersonHandler());
             server.createContext("/event", new EventHandler());
             server.createContext("/load", new LoadHandler());
+            server.createContext("/", new FileHandler());
 
             server.setExecutor(null); // creates a default executor
             server.start();

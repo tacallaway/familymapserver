@@ -35,7 +35,7 @@ public class PersonHandler implements HttpHandler {
                 statusCode = 401;
             } else {
                 if (params.length < 3) {
-                    PersonAllResult result = PersonService.getPersons(authToken.getUser().getUserName());
+                    PersonAllResult result = PersonService.getPersons(authToken.getUserName());
 
                     if (result.getMessage() != null) {
                         responseMap.put("message", result.getMessage());
@@ -58,7 +58,7 @@ public class PersonHandler implements HttpHandler {
                         statusCode = 400;
                     } else {
 
-                        if (!result.getPerson().getDescendant().equals(authToken.getUser().getUserName())) {
+                        if (!result.getPerson().getDescendant().equals(authToken.getUserName())) {
                             responseMap.put("message", "Requested person does not belong to this user");
                             statusCode = 403;
                         } else {

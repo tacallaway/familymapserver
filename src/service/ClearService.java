@@ -28,8 +28,8 @@ public class ClearService {
             EventDao.deleteAll();
             UserDao.deleteAll();
             PersonDao.deleteAll();
-        } catch (SQLException e) {
-            result.setMessage(e.getMessage());
+        } catch (Exception e) {
+            result.setMessage("Internal server error");
         }
 
         return result;

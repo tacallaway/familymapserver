@@ -23,12 +23,14 @@ public class FillHandler implements HttpHandler {
             String[] params = path.split("/");
 
             if (params.length < 3) {
-                message = "Missing parameters";
+                message = "Invalid username or generations parameter";
                 statusCode = 400;
             } else {
                 String username = params[2];
 
-                int numGenerations = (params.length == 3) ? 4 : Integer.parseInt(params[3]);
+                String numGenerationsString = (params.length == 3) ? "4" : params[3];
+
+                int numGenerations = Integer.parseInt(numGenerationsString);
 
                 ClearService.clearUserData(username);
                 MessageResult result = FillService.fill(new FillRequest(username, numGenerations));
@@ -39,7 +41,7 @@ public class FillHandler implements HttpHandler {
 
             HandlerUtil.respond(he, responseMap, statusCode);
         } catch (NumberFormatException e) {
-            responseMap.put("message", "Invalid number of generations");
+            responseMap.put("message", "Invalid username or generations parameter");
             HandlerUtil.respond(he, responseMap, 400);
         } catch (Exception e) {
             responseMap.put("message", e.getMessage());

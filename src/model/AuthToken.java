@@ -9,15 +9,15 @@ public class AuthToken {
     /** Token value */
     private String token;
     /** User object */
-    private User user;
+    private String username;
 
-    public AuthToken(String token, User user) {
+    public AuthToken(String token, String username) {
         this.token = token;
-        this.user = user;
+        this.username = username;
     }
 
-    public AuthToken(User user) {
-        this(UUID.randomUUID().toString(), user);
+    public AuthToken(String username) {
+        this(UUID.randomUUID().toString(), username);
     }
 
     public String getToken() {
@@ -28,11 +28,11 @@ public class AuthToken {
         this.token = token;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserName() {
+        return username;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserName(String username) {
+        this.username = username;
     }
 }

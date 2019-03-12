@@ -35,7 +35,7 @@ public class EventHandler implements HttpHandler {
                 statusCode = 401;
             } else {
                 if (params.length < 3) {
-                    EventAllResult result = EventService.getEvents(authToken.getUser().getUserName());
+                    EventAllResult result = EventService.getEvents(authToken.getUserName());
 
                     if (result.getMessage() != null) {
                         responseMap.put("message", result.getMessage());
@@ -58,7 +58,7 @@ public class EventHandler implements HttpHandler {
                         statusCode = 400;
                     } else {
 
-                        if (!result.getEvent().getDescendant().equals(authToken.getUser().getUserName())) {
+                        if (!result.getEvent().getDescendant().equals(authToken.getUserName())) {
                             responseMap.put("message", "Requested event does not belong to this user");
                             statusCode = 403;
                         } else {

@@ -24,18 +24,24 @@ public class LoginService {
         LoginResult result;
 
         try {
+            if (req.getUserName() == null || req.getPassword() == null) {
+                throw new FamilyMapException("Request property missing or has invalid value");
+            }
+
             User user = UserDao.getUser(req.getUserName());
 
             if (user.getPassword().equals(req.getPassword())) {
                 // AuthTokenDao.deleteAuthTokenByUser(req.getUserName());
-                AuthToken authToken = new AuthToken(user);
+                AuthToken authToken = new AuthToken(user.getUserName());
                 AuthTokenDao.insertAuthToken(authToken);
                 result = new LoginResult(authToken.getToken(), user.getUserName(), user.getPerson().getPersonID());
             } else {
-                result = new LoginResult("Invalid credentials.");
+                result = new LoginResult("Request property missing or has invalid value");
             }
-        } catch (SQLException e) {
-            result = new LoginResult(e.getMessage());
+        } catch (FamilyMapException fme) {
+            result = new LoginResult(fme.getMessage());
+        }  catch (Exception e) {
+            result = new LoginResult("Internal server error");
         }
 
         return result;

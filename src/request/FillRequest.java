@@ -9,10 +9,6 @@ public class FillRequest {
     /** Num generations to populate */
     private int numGenerations;
 
-    public FillRequest(String userName) {
-        this(userName, 4);
-    }
-
     public FillRequest(String userName, int numGenerations) {
         this.userName = userName;
         this.numGenerations = numGenerations;

@@ -3,11 +3,8 @@ package handler;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import request.LoadRequest;
-import request.LoginRequest;
-import result.LoginResult;
 import result.MessageResult;
 import service.LoadService;
-import service.LoginService;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,7 +31,7 @@ public class LoadHandler implements HttpHandler {
 
             HandlerUtil.respond(he, responseMap, statusCode);
         } catch (IOException e) {
-            responseMap.put("message", "Invalid request");
+            responseMap.put("message", "Invalid request data");
             HandlerUtil.respond(he, responseMap, 400);
         }
         catch (Exception e) {

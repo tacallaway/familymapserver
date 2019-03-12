@@ -22,7 +22,7 @@ public class AuthTokenDao {
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, authToken.getToken());
-        pstmt.setString(2, authToken.getUser().getUserName());
+        pstmt.setString(2, authToken.getUserName());
 
         pstmt.executeUpdate();
     }
@@ -45,7 +45,7 @@ public class AuthTokenDao {
 
         if (rs.next()) {
             User user = UserDao.getUser(rs.getString("Username"));
-            authToken = new AuthToken(token, user);
+            authToken = new AuthToken(token, user.getUserName());
         }
 
         return authToken;
@@ -69,7 +69,7 @@ public class AuthTokenDao {
 
         if (rs.next()) {
             User user = UserDao.getUser(username);
-            authToken = new AuthToken(rs.getString("Token"), user);
+            authToken = new AuthToken(rs.getString("Token"), user.getUserName());
         }
 
         return authToken;
@@ -109,8 +109,6 @@ public class AuthTokenDao {
 
     /**
      * Deletes an auth token from the database.
-     *
-     * @param token Token of auth token to delete
      */
     public static void deleteAll() throws SQLException {
         Connection conn = DbConnection.getConnection();
