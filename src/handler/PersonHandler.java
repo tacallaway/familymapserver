@@ -15,6 +15,9 @@ import service.PersonService;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles person operations.
+ */
 public class PersonHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) {

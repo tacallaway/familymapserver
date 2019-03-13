@@ -31,6 +31,11 @@ public class DbConnection {
         return conn;
     }
 
+
+    /**
+     * Gets a database connection.
+     * @return Database connection.
+     */
     public static synchronized Connection getConnection() {
         if (conn == null) {
             conn = createConnection();

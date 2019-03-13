@@ -8,6 +8,9 @@ import service.ClearService;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles clear operations.
+ */
 public class ClearHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) {

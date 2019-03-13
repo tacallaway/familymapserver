@@ -15,6 +15,9 @@ import service.EventService;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles event operations.
+ */
 public class EventHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) {

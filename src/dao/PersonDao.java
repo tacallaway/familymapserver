@@ -35,6 +35,12 @@ public class PersonDao {
         pstmt.executeUpdate();
     }
 
+    /**
+     * Updates a person in the database.
+     *
+     * @param person Person to update
+     * @throws SQLException
+     */
     public static void updatePerson(Person person) throws SQLException {
         Connection conn = DbConnection.getConnection();
 
@@ -80,6 +86,13 @@ public class PersonDao {
         return person;
     }
 
+    /**
+     * Returns a list of persons belonging to a user.
+     *
+     * @param username
+     * @return List of persons
+     * @throws SQLException
+     */
     public static List<Person> getPersons(String username) throws SQLException {
         List<Person> persons = new ArrayList<Person>();
 
@@ -120,6 +133,12 @@ public class PersonDao {
         pstmt.executeUpdate();
     }
 
+    /**
+     * Deletes all the persons belonging to a user.
+     *
+     * @param username Name of the user
+     * @throws SQLException
+     */
     public static void deletePersons(String username) throws SQLException {
         Connection conn = DbConnection.getConnection();
 

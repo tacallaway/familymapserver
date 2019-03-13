@@ -4,6 +4,9 @@ import handler.*;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+/**
+ * Family map server.
+ */
 public class Server {
     public static void main(String[] args) {
         try {

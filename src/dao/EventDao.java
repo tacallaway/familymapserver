@@ -60,6 +60,13 @@ public class EventDao {
         return event;
     }
 
+    /**
+     * Gets all events for a user.
+     *
+     * @param username Name of the user
+     * @return List of events
+     * @throws SQLException
+     */
     public static List<Event> getEvents(String username) throws SQLException {
 
         List<Event> events = new ArrayList<Event>();

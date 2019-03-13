@@ -11,6 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Handles load operations.
+ */
 public class LoadHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) {

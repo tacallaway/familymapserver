@@ -53,6 +53,11 @@ public class EventService {
         return result;
     }
 
+    /**
+     * Adds an event to the database.
+     *
+     * @return An event object
+     */
     public static Event addEvent(Person person, double latitude, double longitude, String country, String city, String eventType, int year) {
         Event event;
 

@@ -35,6 +35,11 @@ public class ClearService {
         return result;
     }
 
+
+    /**
+     * Clears the database of a user's data.
+     * @param username Name of user
+     */
     public static void clearUserData(String username) {
         try {
             User user = UserDao.getUser(username);

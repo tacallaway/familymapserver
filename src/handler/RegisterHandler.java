@@ -10,6 +10,9 @@ import service.RegisterService;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles register operations.
+ */
 public class RegisterHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) {

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 
+/**
+ * Handles file operations.
+ */
 public class FileHandler implements HttpHandler {
     /**
      * NOTE THAT SINCE THE BASIC JAVA HttpServer DOESN'T INCLUDE FILE SERVING FUNCTIONALITY, THE FOLLOWING METHOD WAS

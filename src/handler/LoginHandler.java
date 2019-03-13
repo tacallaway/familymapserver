@@ -10,6 +10,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles login operations.
+ */
 public class LoginHandler implements HttpHandler {
     @Override
     public void handle(HttpExchange he) {

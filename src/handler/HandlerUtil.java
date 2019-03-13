@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Handler utility class.
+ */
 public class HandlerUtil {
     public static Map<String, String> getRequestBody(HttpExchange he) throws Exception {
         String requestBody = new BufferedReader(new InputStreamReader(he.getRequestBody())).lines().collect(Collectors.joining("\n"));

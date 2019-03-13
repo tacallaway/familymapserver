@@ -10,6 +10,9 @@ import service.FillService;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Handles fill operations.
+ */
 public class FillHandler implements HttpHandler {
     /**
      *  PLEASE NOTE THAT SINCE JAVA'S BASIC HttpService DOESN'T HAVE BUILT IN FILE SERVING, THE FOLLOWING METHOD WAS
