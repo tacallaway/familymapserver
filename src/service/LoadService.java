@@ -106,6 +106,7 @@ public class LoadService {
                 throw new FamilyMapException();
             }
 
+            String eventID = (String)event.get("eventID");
             String descendant = (String)event.get("descendant");
             String personID = (String)event.get("personID");
             double latitude = (double)event.get("latitude");
@@ -119,7 +120,7 @@ public class LoadService {
                 throw new FamilyMapException();
             }
 
-            Event objectEvent = new Event(descendant, personID, latitude, longitude, country, city, eventType, year);
+            Event objectEvent = new Event(eventID, descendant, personID, latitude, longitude, country, city, eventType, year);
 
             EventDao.insertEvent(objectEvent);
         }

@@ -1,6 +1,7 @@
 package dao;
 
 import model.Person;
+import model.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -122,10 +123,13 @@ public class PersonDao {
     public static void deletePersons(String username) throws SQLException {
         Connection conn = DbConnection.getConnection();
 
-        String sql = "DELETE FROM Person WHERE Descendant = ?";
+        User user = UserDao.getUser(username);
+
+        String sql = "DELETE FROM Person WHERE Descendant = ? AND PersonID != ?";
 
         PreparedStatement pstmt = conn.prepareStatement(sql);
         pstmt.setString(1, username);
+        pstmt.setString(2, user.getPerson().getPersonID());
 
         pstmt.executeUpdate();
     }
